@@ -192,7 +192,7 @@ _python_host_callback = None
 def host_callback_is_registered() -> bool:
     return _python_host_callback is not None
 
-def register_host_callback(python_host_callback: Callable)-> void:
+def register_host_callback(python_host_callback: Callable) -> None:
     """
     registers a python function to serve requests from plugins
 
@@ -408,7 +408,7 @@ cdef _convert_python_midi_event_into_c(python_event: PythonVstMidiEvent, VstMidi
     c_event_pointer.reserved1 = python_event.reserved1
     c_event_pointer.reserved2 = python_event.reserved2
 
-cdef VstIntPtr _c_host_callback(AEffect*effect, VstInt32 opcode, VstInt32 index, VstIntPtr value, void *ptr, float opt):
+cdef VstIntPtr _c_host_callback(AEffect*effect, VstInt32 opcode, VstInt32 index, VstIntPtr value, void *ptr, float opt) noexcept:
     """
     A C-level entry for accessing host through sending "opcodes"
     
